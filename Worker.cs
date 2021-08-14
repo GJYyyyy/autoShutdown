@@ -13,7 +13,7 @@ namespace autoShutdown
     {
         private readonly ILogger<Worker> _logger;
         private Shutdown shutdown;
-        private long autoShutdownHours = 4;
+        private long autoShutdownHours = 12;
 
         public Worker(ILogger<Worker> logger)
         {

@@ -23,7 +23,7 @@ namespace autoShutdown
 
         public void ExecuteShutdown()
         {
-            process.StandardInput.WriteLine("shutdown /s /t 300");
+            process.StandardInput.WriteLine("shutdown /s /t 3600");
             process.StandardInput.AutoFlush = true;
         }
 
