@@ -13,7 +13,7 @@ namespace autoShutdown
     {
         private readonly ILogger<Worker> _logger;
         private Shutdown shutdown;
-        private long autoShutdownHours = 12;
+        private long autoShutdownHours = 8;
 
         public Worker(ILogger<Worker> logger)
         {
@@ -27,7 +27,7 @@ namespace autoShutdown
             while (!stoppingToken.IsCancellationRequested)
             {
                 //_logger.LogInformation(CheckComputerFreeState.GetLastInputTime().ToString());
-                if(autoShutdownHours * 3600 == CheckComputerFreeState.GetLastInputTime())
+                if(autoShutdownHours * 3600 <= CheckComputerFreeState.GetLastInputTime())
                 {
                     shutdown.ExecuteShutdown();
                 }
