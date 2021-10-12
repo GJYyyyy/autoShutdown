@@ -13,7 +13,8 @@ namespace autoShutdown
     {
         private readonly ILogger<Worker> _logger;
         private Shutdown shutdown;
-        private long autoShutdownHours = 8;
+        // 超过这个秒数将会触发自动关机
+        private readonly long autoShutdownSeconds = 8 * 3600;
 
         public Worker(ILogger<Worker> logger)
         {
@@ -27,7 +28,8 @@ namespace autoShutdown
             while (!stoppingToken.IsCancellationRequested)
             {
                 //_logger.LogInformation(CheckComputerFreeState.GetLastInputTime().ToString());
-                if(autoShutdownHours * 3600 <= CheckComputerFreeState.GetLastInputTime())
+                //Console.WriteLine($"{autoShutdownSeconds} <= {CheckComputerFreeState.GetLastInputTime()}");
+                if (autoShutdownSeconds <= CheckComputerFreeState.GetLastInputTime())
                 {
                     shutdown.ExecuteShutdown();
                 }

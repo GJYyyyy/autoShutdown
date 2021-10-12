@@ -8,6 +8,8 @@ namespace autoShutdown
     class Shutdown
     {
         private Process process;
+        // 自动关机超时时间
+        private readonly long timeout = 600; 
 
         public Shutdown()
         {
@@ -23,7 +25,7 @@ namespace autoShutdown
 
         public void ExecuteShutdown()
         {
-            process.StandardInput.WriteLine("shutdown /s /t 3600");
+            process.StandardInput.WriteLine($"shutdown /s /t {timeout}");
             process.StandardInput.AutoFlush = true;
         }
 
